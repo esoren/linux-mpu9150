@@ -41,8 +41,14 @@ void print_calibrated_accel(mpudata_t *mpu);
 void print_calibrated_mag(mpudata_t *mpu);
 void register_sig_handler();
 void sigint_handler(int sig);
+void tap_callback(unsigned char A, unsigned char B);
 
 int done;
+
+void tap_callback(unsigned char A, unsigned char B) {
+	printf("TAP\n");
+	return;
+}
 
 void usage(char *argv_0)
 {
@@ -153,6 +159,9 @@ int main(int argc, char **argv)
 	if (mpu9150_init(i2c_bus, sample_rate, yaw_mix_factor))
 		exit(1);
 
+	if (dmp_register_tap_cb(&tap_callback))
+		exit(1);
+
 	set_cal(0, accel_cal_file);
 	set_cal(1, mag_cal_file);
 
@@ -162,6 +171,7 @@ int main(int argc, char **argv)
 	if (mag_cal_file)
 		free(mag_cal_file);
 
+	
 	read_loop(sample_rate);
 
 	mpu9150_exit();
