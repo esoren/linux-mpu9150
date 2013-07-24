@@ -187,11 +187,11 @@ void read_loop(unsigned int sample_rate)
 
 	while (!done) {
 		if (mpu9150_read(&mpu) == 0) {
-			printf("\033[2J"); /*clear screen*/
+			//printf("\033[2J"); /*clear screen*/
 			print_fused_euler_angles(&mpu);
-			print_fused_quaternions(&mpu);
-			print_calibrated_accel(&mpu);
-			print_calibrated_mag(&mpu);
+//			print_fused_quaternions(&mpu);
+//			print_calibrated_accel(&mpu);
+//			print_calibrated_mag(&mpu);
 		}
 
 		linux_delay_ms(loop_delay);
@@ -207,7 +207,7 @@ void print_fused_euler_angles(mpudata_t *mpu)
 			mpu->fusedEuler[VEC3_Y] * RAD_TO_DEGREE, 
 			mpu->fusedEuler[VEC3_Z] * RAD_TO_DEGREE);
 
-	fflush(stdout);
+	//fflush(stdout);
 }
 
 void print_fused_quaternions(mpudata_t *mpu)
@@ -218,7 +218,7 @@ void print_fused_quaternions(mpudata_t *mpu)
 			mpu->fusedQuat[QUAT_Y],
 			mpu->fusedQuat[QUAT_Z]);
 
-	fflush(stdout);
+	//fflush(stdout);
 }
 
 void print_calibrated_accel(mpudata_t *mpu)
@@ -228,7 +228,7 @@ void print_calibrated_accel(mpudata_t *mpu)
 			mpu->calibratedAccel[VEC3_Y], 
 			mpu->calibratedAccel[VEC3_Z]);
 
-	fflush(stdout);
+	//fflush(stdout);
 }
 
 void print_calibrated_mag(mpudata_t *mpu)
@@ -238,7 +238,7 @@ void print_calibrated_mag(mpudata_t *mpu)
 			mpu->calibratedMag[VEC3_Y], 
 			mpu->calibratedMag[VEC3_Z]);
 
-	fflush(stdout);
+	//fflush(stdout);
 }
 
 int set_cal(int mag, char *cal_file)
