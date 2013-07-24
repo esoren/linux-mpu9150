@@ -135,7 +135,8 @@ int mpu9150_init(int i2c_bus, int sample_rate, int mix_factor)
 	fflush(stdout);
 
   	if (dmp_enable_feature(DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_SEND_RAW_ACCEL 
-						| DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL)) {
+						| DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL
+						| DMP_FEATURE_TAP)) {
 		printf("\ndmp_enable_feature() failed\n");
 		return -1;
 	}
