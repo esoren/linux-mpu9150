@@ -1188,7 +1188,7 @@ int dmp_enable_6x_lp_quat(unsigned char enable)
 static int decode_gesture(unsigned char *gesture)
 {
     unsigned char tap, android_orient;
-
+	
     android_orient = gesture[3] & 0xC0;
     tap = 0x3F & gesture[3];
 
@@ -1198,6 +1198,8 @@ static int decode_gesture(unsigned char *gesture)
         count = (tap % 8) + 1;
         if (dmp.tap_cb)
             dmp.tap_cb(direction, count);
+		else
+			printf('Uh oh');
     }
 
     if (gesture[1] & INT_SRC_ANDROID_ORIENT) {
