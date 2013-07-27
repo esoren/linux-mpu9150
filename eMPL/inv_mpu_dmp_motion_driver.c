@@ -1198,8 +1198,6 @@ static int decode_gesture(unsigned char *gesture)
         count = (tap % 8) + 1;
         if (dmp.tap_cb)
             dmp.tap_cb(direction, count);
-		else
-			printf('Uh oh');
     }
 
     if (gesture[1] & INT_SRC_ANDROID_ORIENT) {
@@ -1332,9 +1330,10 @@ int dmp_read_fifo(short *gyro, short *accel, long *quat,
     /* Gesture data is at the end of the DMP packet. Parse it and call
      * the gesture callbacks (if registered).
      */
-    if (dmp.feature_mask & (DMP_FEATURE_TAP | DMP_FEATURE_ANDROID_ORIENT))
+    if (dmp.feature_mask & (DMP_FEATURE_TAP | DMP_FEATURE_ANDROID_ORIENT)) {
+		printf("Decoding Gesture\n");
         decode_gesture(fifo_data + ii);
-
+	}
     get_ms(timestamp);
     return 0;
 }
