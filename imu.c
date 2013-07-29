@@ -41,13 +41,33 @@ void print_calibrated_accel(mpudata_t *mpu);
 void print_calibrated_mag(mpudata_t *mpu);
 void register_sig_handler();
 void sigint_handler(int sig);
-void tap_callback(unsigned char A, unsigned char B);
+void tap_callback(unsigned char direction, unsigned char count);
 
 int done;
 
-void tap_callback(unsigned char A, unsigned char B) {
-	printf("TAP\n");
+void tap_callback(unsigned char direction, unsigned char count) {
+	switch direction {
+		case TAP_X_UP:
+			printf("X, UP, ");
+			break;
+		case TAP_X_DOWN:
+			printf("X, UP, ");
+			break;
+		case TAP_Y_UP:
+			printf("Y, UP, ");
+			break;
+		case TAP_Y_DOWN:
+			printf("Y, DOWN, ");
+			break;
+		case TAP_Z_UP:
+			printf("Z, UP, ");
+			break;
+		case TAP_Z_DOWN:
+			printf("Z, DOWN, ");
+	}
+	printf("%i\n", count);
 	return;
+	
 }
 
 void usage(char *argv_0)
