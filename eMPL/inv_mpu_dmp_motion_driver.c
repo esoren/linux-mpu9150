@@ -1025,10 +1025,12 @@ int dmp_enable_feature(unsigned short mask)
     mpu_write_mem(CFG_15,10,tmp);
 
     /* Send gesture data to the FIFO. */
-    if (mask & (DMP_FEATURE_TAP | DMP_FEATURE_ANDROID_ORIENT))
+    if (mask & (DMP_FEATURE_TAP | DMP_FEATURE_ANDROID_ORIENT)) {
         tmp[0] = DINA20;
-    else
+		printf("Sending Gesture Data to the FIFO\n"); 
+	} else {
         tmp[0] = 0xD8;
+	}
     mpu_write_mem(CFG_27,1,tmp);
 
     if (mask & DMP_FEATURE_GYRO_CAL)
@@ -1052,6 +1054,7 @@ int dmp_enable_feature(unsigned short mask)
     }
 
     if (mask & DMP_FEATURE_TAP) {
+		printf("Enabling TAP\n"); 
         /* Enable tap. */
         tmp[0] = 0xF8;
         mpu_write_mem(CFG_20, 1, tmp);
