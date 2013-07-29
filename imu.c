@@ -32,6 +32,7 @@
 #include "mpu9150.h"
 #include "linux_glue.h"
 #include "local_defaults.h"
+#include "./eMPL/inv_mpu_dmp_motion_driver.h"
 
 int set_cal(int mag, char *cal_file);
 void read_loop(unsigned int sample_rate, char tap_display);
