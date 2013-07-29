@@ -1058,11 +1058,11 @@ int dmp_enable_feature(unsigned short mask)
         /* Enable tap. */
         tmp[0] = 0xF8;
         mpu_write_mem(CFG_20, 1, tmp);
-        dmp_set_tap_thresh(TAP_XYZ, 5);
+        dmp_set_tap_thresh(TAP_XYZ, 2);
         dmp_set_tap_axes(TAP_XYZ);
         dmp_set_tap_count(2);
-        dmp_set_tap_time(100);
-        dmp_set_tap_time_multi(500);
+        dmp_set_tap_time(50);
+        dmp_set_tap_time_multi(250);
 
         dmp_set_shake_reject_thresh(GYRO_SF, 200);
         dmp_set_shake_reject_time(40);
