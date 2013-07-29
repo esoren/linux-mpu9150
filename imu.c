@@ -198,7 +198,7 @@ void read_loop(unsigned int sample_rate)
 	while (!done) {
 		if (mpu9150_read(&mpu) == 0) {
 			//printf("\033[2J"); /*clear screen*/
-			print_fused_euler_angles(&mpu);
+			//print_fused_euler_angles(&mpu);
 //			print_fused_quaternions(&mpu);
 //			print_calibrated_accel(&mpu);
 //			print_calibrated_mag(&mpu);
