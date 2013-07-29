@@ -204,6 +204,7 @@ void read_loop(unsigned int sample_rate)
 //			print_calibrated_mag(&mpu);
 		}
 
+		fflush(stdout);
 		linux_delay_ms(loop_delay);
 	}
 
@@ -217,7 +218,7 @@ void print_fused_euler_angles(mpudata_t *mpu)
 			mpu->fusedEuler[VEC3_Y] * RAD_TO_DEGREE, 
 			mpu->fusedEuler[VEC3_Z] * RAD_TO_DEGREE);
 
-	//fflush(stdout);
+	//
 }
 
 void print_fused_quaternions(mpudata_t *mpu)
