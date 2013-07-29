@@ -1058,9 +1058,9 @@ int dmp_enable_feature(unsigned short mask)
         /* Enable tap. */
         tmp[0] = 0xF8;
         mpu_write_mem(CFG_20, 1, tmp);
-        dmp_set_tap_thresh(TAP_XYZ, 5);
+        dmp_set_tap_thresh(TAP_XYZ, 100);
         dmp_set_tap_axes(TAP_XYZ);
-        dmp_set_tap_count(1);
+        dmp_set_tap_count(2);
         dmp_set_tap_time(100);
         dmp_set_tap_time_multi(500);
 
@@ -1191,7 +1191,7 @@ int dmp_enable_6x_lp_quat(unsigned char enable)
 static int decode_gesture(unsigned char *gesture)
 {
     unsigned char tap, android_orient;
-	printf("Beginning to decode gesture\n");
+	//printf("Beginning to decode gesture\n");
     android_orient = gesture[3] & 0xC0;
     tap = 0x3F & gesture[3];
 

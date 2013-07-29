@@ -64,6 +64,7 @@ void usage(char *argv_0)
 	printf("  -m <magcal file>      Path to mag calibration file. Default is ./magcal.txt\n");
 	printf("  -v                    Verbose messages\n");
 	printf("  -h                    Show this help\n");
+	printf("  -t					Only show tap responses (suppress coordinate display)\n");
 
 	printf("\nExample: %s -b3 -s20 -y10\n\n", argv_0);
 	
@@ -79,8 +80,9 @@ int main(int argc, char **argv)
 	int verbose = 0;
 	char *mag_cal_file = NULL;
 	char *accel_cal_file = NULL;
+	char *tap_display = 0;
 
-	while ((opt = getopt(argc, argv, "b:s:y:a:m:vh")) != -1) {
+	while ((opt = getopt(argc, argv, "b:s:y:a:m:vh:t")) != -1) {
 		switch (opt) {
 		case 'b':
 			i2c_bus = strtoul(optarg, NULL, 0);
@@ -140,6 +142,9 @@ int main(int argc, char **argv)
 
 			strcpy(mag_cal_file, optarg);
 			break;
+		case 't'
+			tap_display = 1;
+			break;
 
 		case 'v':
 			verbose = 1;
@@ -198,7 +203,8 @@ void read_loop(unsigned int sample_rate)
 	while (!done) {
 		if (mpu9150_read(&mpu) == 0) {
 			//printf("\033[2J"); /*clear screen*/
-			print_fused_euler_angles(&mpu);
+			if(tap_display == 0) 
+				print_fused_euler_angles(&mpu);
 //			print_fused_quaternions(&mpu);
 //			print_calibrated_accel(&mpu);
 //			print_calibrated_mag(&mpu);
