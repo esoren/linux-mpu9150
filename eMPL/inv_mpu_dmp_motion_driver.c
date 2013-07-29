@@ -1191,7 +1191,7 @@ int dmp_enable_6x_lp_quat(unsigned char enable)
 static int decode_gesture(unsigned char *gesture)
 {
     unsigned char tap, android_orient;
-	
+	printf("Beginning to decode gesture");
     android_orient = gesture[3] & 0xC0;
     tap = 0x3F & gesture[3];
 
