@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 	int verbose = 0;
 	char *mag_cal_file = NULL;
 	char *accel_cal_file = NULL;
-	char *tap_display = 0;
+	char tap_display = 0;
 
 	while ((opt = getopt(argc, argv, "b:s:y:a:m:vh:t")) != -1) {
 		switch (opt) {
@@ -177,14 +177,14 @@ int main(int argc, char **argv)
 		free(mag_cal_file);
 
 	
-	read_loop(sample_rate);
+	read_loop(sample_rate, tap_display);
 
 	mpu9150_exit();
 
 	return 0;
 }
 
-void read_loop(unsigned int sample_rate)
+void read_loop(unsigned int sample_rate, char tap_display)
 {
 	unsigned long loop_delay;
 	mpudata_t mpu;
