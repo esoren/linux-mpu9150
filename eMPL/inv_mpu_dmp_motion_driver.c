@@ -1334,6 +1334,8 @@ int dmp_read_fifo(short *gyro, short *accel, long *quat,
      */
     if (dmp.feature_mask & (DMP_FEATURE_TAP | DMP_FEATURE_ANDROID_ORIENT))
         decode_gesture(fifo_data + ii);
+	else
+		printf("TAP Feature is not enabled");
 
     get_ms(timestamp);
     return 0;
