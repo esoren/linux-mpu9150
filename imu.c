@@ -65,6 +65,7 @@ void usage(char *argv_0)
 	printf("  -v                    Verbose messages\n");
 	printf("  -h                    Show this help\n");
 	printf("  -t					Only show tap responses (suppress coordinate display)\n");
+	printf("  -l					Set tap threshold. Range is 1-200 (NOT IMPLEMENTED YET)\n");
 
 	printf("\nExample: %s -b3 -s20 -y10\n\n", argv_0);
 	
@@ -81,6 +82,7 @@ int main(int argc, char **argv)
 	char *mag_cal_file = NULL;
 	char *accel_cal_file = NULL;
 	char tap_display = 0;
+	unsigned char tap_threshold = 5;
 
 	while ((opt = getopt(argc, argv, "b:s:y:a:m:vh:t")) != -1) {
 		switch (opt) {
@@ -115,6 +117,13 @@ int main(int argc, char **argv)
 			if (yaw_mix_factor < 0 || yaw_mix_factor > 100)
 				usage(argv[0]);
 
+			break;
+
+		case 'l':
+			tap_threshold = strtoul(optarg, NULL, 0);
+			
+			if (errno == EINVAL)
+				usage(argv[0]);
 			break;
 
 		case 'a':
