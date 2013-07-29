@@ -34,7 +34,7 @@
 #include "local_defaults.h"
 
 int set_cal(int mag, char *cal_file);
-void read_loop(unsigned int sample_rate);
+void read_loop(unsigned int sample_rate, char tap_display);
 void print_fused_euler_angles(mpudata_t *mpu);
 void print_fused_quaternion(mpudata_t *mpu);
 void print_calibrated_accel(mpudata_t *mpu);
