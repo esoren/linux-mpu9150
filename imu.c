@@ -142,7 +142,7 @@ int main(int argc, char **argv)
 
 			strcpy(mag_cal_file, optarg);
 			break;
-		case 't'
+		case 't':
 			tap_display = 1;
 			break;
 
