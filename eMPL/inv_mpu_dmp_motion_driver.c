@@ -1202,7 +1202,7 @@ static int decode_gesture(unsigned char *gesture)
         if (dmp.tap_cb)
             dmp.tap_cb(direction, count);
 		else
-			printf('Uh oh');
+			printf("Callback not registered");
     }
 
     if (gesture[1] & INT_SRC_ANDROID_ORIENT) {
