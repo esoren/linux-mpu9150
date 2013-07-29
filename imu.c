@@ -46,7 +46,7 @@ void tap_callback(unsigned char direction, unsigned char count);
 int done;
 
 void tap_callback(unsigned char direction, unsigned char count) {
-	switch direction {
+	switch (direction) {
 		case TAP_X_UP:
 			printf("X, UP, ");
 			break;
